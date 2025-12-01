@@ -1,0 +1,407 @@
+/* =====================================================
+   RESET
+===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   THEME VARIABLES
+===================================================== */
+
+/* Light theme mặc định */
+:root {
+    --bg: #f3f4f6; /* nền ngoài */
+    --bg-elevated: #ffffff; /* header, nav, main, footer */
+    --text: #0f172a;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+
+    --accent: #16a34a; /* brand Greenwick */
+    --accent-soft: #dcfce7;
+    --accent-contrast: #ffffff;
+
+    --danger: #dc2626;
+    --danger-soft: #fee2e2;
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+    --bg: #020617; /* nền ngoài siêu tối */
+    --bg-elevated: #020617; /* giữ phẳng, card sẽ được tách bằng shadow */
+    --text: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border: #1f2937;
+
+    --accent: #22c55e;
+    --accent-soft: #052e16;
+    --accent-contrast: #022c22;
+
+    --danger: #f97373;
+    --danger-soft: #450a0a;
+}
+
+/* =====================================================
+   LAYOUT + STICKY FOOTER
+===================================================== */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.05rem;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    background-color: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+    position: relative;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text);
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* nút toggle theme (id đã có trong layout: #theme-toggle) */
+.btn-theme {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.2rem;
+
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.btn-theme:hover {
+    background: var(--accent-soft);
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav {
+    background-color: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0.7rem 0;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* =====================================================
+   MAIN – CARD CHUNG CHO MỌI PAGE
+===================================================== */
+
+main {
+    flex: 1; /* đẩy footer xuống đáy */
+
+    width: 65%;
+    margin: 2rem auto;
+    padding: 1.75rem 2rem 2rem;
+
+    background-color: var(--bg-elevated);
+    color: var(--text);
+
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+/* dark mode cho card */
+:root[data-theme="dark"] main {
+    background-color: #020617;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+}
+
+/* tiêu đề trong content (h2 ở các templates: Questions, Users, Modules, Contact) */
+main h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+/* link “Add New …” ngay dưới h2 */
+main > a:first-of-type {
+    display: inline-block;
+    margin: 0.3rem 0 1rem;
+    font-size: 0.9rem;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background-color: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    padding: 0.7rem 0;
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* =====================================================
+   TEXT & LINK
+===================================================== */
+
+p {
+    margin-bottom: 0.8rem;
+}
+
+a,
+a:visited {
+    color: var(--accent);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* link hành động nhỏ (Edit | Delete | Add New…) – dùng class nếu muốn */
+.action-link {
+    font-size: 0.9rem;
+}
+
+/* =====================================================
+   TABLE – QUESTIONS / USERS / MODULES
+===================================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:hover td {
+    background-color: rgba(148, 163, 184, 0.12);
+}
+
+:root[data-theme="dark"] tbody tr:hover td {
+    background-color: rgba(15, 23, 42, 0.85);
+}
+
+/* cột image nếu có ảnh upload */
+td img {
+    max-width: 220px;
+    height: auto;
+    display: block;
+    border-radius: 0.35rem;
+}
+
+/* =====================================================
+   FORM – ADD QUESTION / USERS / MODULES / CONTACT
+===================================================== */
+
+form {
+    overflow: auto;
+    clear: both;
+    display: block;
+    max-width: 440px; /* form nằm gọn trong main */
+    margin-top: 1rem;
+}
+
+/* mỗi dòng form thường là 1 <p> trong templates */
+form p {
+    clear: both;
+    margin-bottom: 0.75rem;
+}
+
+/* label bên trái, input bên phải */
+label {
+    float: left;
+    width: 8.5em;
+    margin-right: 0.75em;
+    padding-top: 0.35em;
+}
+
+input,
+select,
+textarea {
+    float: left;
+    width: 16em;
+    padding: 0.4em 0.5em;
+    border-radius: 0.3rem;
+    border: 1px solid var(--border);
+    background-color: var(--bg-elevated);
+    color: var(--text);
+}
+
+/* file input giữ width tự nhiên */
+input[type="file"] {
+    width: auto;
+}
+
+/* nút submit */
+input[type="submit"],
+button[type="submit"] {
+    width: auto;
+    float: left;
+    margin-left: 8.5em;
+    margin-top: 0.3rem;
+
+    padding: 0.45rem 1.4rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+    border: 1px solid var(--accent);
+    border-radius: 0.4rem;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    filter: brightness(1.05);
+}
+
+/* checkbox nếu có dùng */
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.4rem;
+}
+
+/* =====================================================
+   ERRORS / ALERT
+===================================================== */
+
+.errors {
+    padding: 0.75rem 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--danger);
+    background-color: var(--danger-soft);
+    color: var(--danger);
+    margin-bottom: 1rem;
+}
+
+.errors ul {
+    margin-left: 1.25rem;
+}
+
+/* =====================================================
+   JOKELIST (nếu bạn reuse từ IJDB)
+===================================================== */
+
+.jokelist {
+    display: table;
+    width: 100%;
+}
+
+.categories {
+    display: table-cell;
+    width: 22%;
+    background-color: #111827;
+    padding: 1em;
+    list-style-type: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+:root[data-theme="dark"] .categories {
+    background-color: #020617;
+}
+
+.categories a {
+    color: #f9fafb;
+    text-decoration: none;
+}
+
+.categories a:hover {
+    text-decoration: underline;
+}
+
+.categories li {
+    margin-bottom: 0.7em;
+}
+
+.jokelist .jokes {
+    display: table-cell;
+    padding: 1em 1.2em;
+}
+
+.currentpage:before {
+    content: "[";
+}
+.currentpage:after {
+    content: "]";
+}
+
+/* =====================================================
+   BUTTON PHỤ / ALERT PHỤ
+===================================================== */
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+    border: 1px solid var(--accent);
+    padding: 0.35rem 0.9rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.alert-error {
+    background-color: var(--danger-soft);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 0.75rem 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+}
