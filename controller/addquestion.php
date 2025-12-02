@@ -1,4 +1,7 @@
 <?php
+// require '../includes/check.php';
+require '../includes/check_user.php';
+
 require '../includes/DatabaseConnection.php';
 
 $id      = $_GET['id'] ?? null;

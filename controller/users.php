@@ -1,8 +1,11 @@
 <?php
+// check_admin.php
+require '../includes/check_admin.php';
+
 // controller/users.php
 require '../includes/DatabaseConnection.php';
 
-// Lấy danh sách user, sắp xếp mới nhất lên trên
+// sort users by creation date descending
 $sql = 'SELECT id, name, email, created_at 
         FROM users 
         ORDER BY created_at DESC';

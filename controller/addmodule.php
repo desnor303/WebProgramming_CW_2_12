@@ -1,5 +1,7 @@
 <?php
 // controller/addmodule.php
+require '../includes/check.php';
+
 require '../includes/DatabaseConnection.php';
 
 $errors      = [];

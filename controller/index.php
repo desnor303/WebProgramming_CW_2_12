@@ -1,6 +1,8 @@
 <?php
 require '../includes/DatabaseConnection.php';
 
+
+// require '../includes/check.php';
 // get questions + join user/module
 $sql = 'SELECT question.id,
                question.question_text,

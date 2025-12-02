@@ -1,4 +1,8 @@
 <?php
+
+// check_admin.php
+require '../includes/check_admin.php';
+
 // controller/modules.php
 require '../includes/DatabaseConnection.php';
 
